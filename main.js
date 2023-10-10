@@ -29,13 +29,13 @@ recognition.onresult = function(event) {
   console.log(event); 
   content = event.results[0][0].transcript;
   to_number = Number(content);
+  document.getElementById("status").innerHTML = "The speech has been recognized: " + content; 
   if(Number.isInteger(to_number)) {
+    document.getElementById("status").innerHTML = "Started drawing apple"; 
     draw_apple = "set";
   } else {
-    draw_apple = "The speech has not recognized a number ";
+ document.getElementById("status").innerHTML = "The speech has not recognized a number"; 
   }
-  document.getElementById("status").innerHTML = "The speech has been recognized: " + content; 
-
 }
 
 function setup() {
@@ -49,7 +49,6 @@ function draw() {
   if(draw_apple == "set")
   {
     for(var i = 1; i <= to_number; i++) {
-      i = i + 1;
       x = Math.floor(Math.random() * 700);
       y = Math.floor(Math.random() * 400);
       image(apple, x, y, 50, 50)
